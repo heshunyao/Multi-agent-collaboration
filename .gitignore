@@ -1,0 +1,22 @@
+node_modules
+dist
+/data
+.shots
+.screenshots
+*.log
+.DS_Store
+
+# Trae 临时产物
+.trae
+.trae-html-share-packages
+
+# Java 业务服务
+backend/target
+backend/data
+backend/workspaces
+
+# Python Agent Engine
+agent-engine/.venv
+agent-engine/__pycache__
+agent-engine/app/__pycache__
+*.pyc

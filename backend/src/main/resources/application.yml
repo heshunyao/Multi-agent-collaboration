@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: agentforge-backend
+  datasource:
+    url: jdbc:h2:file:./data/agentforge;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  mvc:
+    async:
+      request-timeout: 600000
+  jackson:
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    root: info
+    com.agentforge: info
+
+agentforge:
+  engine:
+    # Python Agent Engine（FastAPI + LangGraph）
+    base-url: http://127.0.0.1:8000
+    # 引擎回轮询控制状态的回调地址（暂停 / 继续 / 终止）
+    callback-base-url: http://127.0.0.1:8080
+    # 单次对话最长等待时间（毫秒）
+    timeout-ms: 300000
+  chat:
+    # 携带的历史消息条数
+    history-limit: 20
+  # 旧版 Node 服务的 JSON 数据，首次启动且库为空时迁移
+  legacy-store-file: ../data/store.json
